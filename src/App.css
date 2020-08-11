@@ -1,3 +1,11 @@
+svg {
+  width: 80%;
+  background-color: hotpink;
+  overflow: visible;
+  display: block;
+  margin: auto;
+}
+
 .TopMenu {
   margin-top: 10px;
   width: 100%;

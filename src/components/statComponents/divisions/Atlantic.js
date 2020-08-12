@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createStandingsChart } from "../../../utilities/createStandingsChart";
 
-const Metro = ({ rawData, chartTypeId }) => {
+const Atlantic = ({ rawData, chartTypeId }) => {
   const svgRef = useRef();
   const [selectedTeam, setSelectedTeam] = useState();
 
@@ -15,7 +15,7 @@ const Metro = ({ rawData, chartTypeId }) => {
 
   return (
     <>
-      <h1>Metro</h1>
+      <h1>Atlantic</h1>
       <svg ref={svgRef}>
         <g className="x-axis" />
         <g className="y-axis" />
@@ -24,4 +24,4 @@ const Metro = ({ rawData, chartTypeId }) => {
   );
 };
 
-export default Metro;
+export default Atlantic;

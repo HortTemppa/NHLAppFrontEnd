@@ -1,8 +1,16 @@
+.x-axis {
+  font-size: 10px;
+}
+
+.y-axis {
+  font-size: 10px;
+}
+
 svg {
-  width: 80%;
-  background-color: hotpink;
+  background-color: rgb(255, 255, 255);
   overflow: visible;
   display: block;
+  width: 40%;
   margin: auto;
 }
 
@@ -40,4 +48,15 @@ svg {
   background-color: grey;
   height: 100px;
   border-radius: 5px;
+}
+
+@media screen and (min-width: 800px) {
+  .x-axis,
+  .y-axis {
+    font-size: 14px;
+  }
+
+  svg {
+    width: 50%;
+  }
 }

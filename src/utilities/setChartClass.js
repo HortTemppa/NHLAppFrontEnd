@@ -1,4 +1,4 @@
-import { setChartType } from "./setChartType";
+import { setChartType } from "./setChartData";
 import { select } from "d3";
 
 export function setChartClass(svgRef) {

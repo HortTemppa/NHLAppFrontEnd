@@ -9,6 +9,7 @@ import Atlantic from "./divisions/Atlantic";
 import Central from "./divisions/Central";
 import Pacific from "./divisions/Pacific";
 import Eastern from "./conferences/Eastern";
+import Western from "./conferences/Western";
 
 import SelectStandings from "./navigation/SelectStandings";
 
@@ -69,6 +70,13 @@ const Standings = () => {
           <>
             <SelectStandings chartChange={chartChangeHandler} />
             <Eastern rawData={data} chartTypeId={tableType} />
+          </>
+        );
+      case 6:
+        return (
+          <>
+            <SelectStandings chartChange={chartChangeHandler} />
+            <Western rawData={data} chartTypeId={tableType} />
           </>
         );
     }

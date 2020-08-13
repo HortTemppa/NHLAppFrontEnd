@@ -1,7 +1,11 @@
 import { getRandomColor } from "./getRandomColor";
 import { select, axisBottom, axisLeft, scaleLinear, scaleBand, svg } from "d3";
 
-export function createStandingsChart(
+import { setChartData } from "./setChartData";
+import { setChartHeight } from "./setChartHeight";
+import { setTickLabels } from "./setTickLabels";
+
+export async function createStandingsChart(
   rawData,
   svgRef,
   setSelectedTeam,
@@ -10,35 +14,12 @@ export function createStandingsChart(
   const randomColor = () => getRandomColor();
 
   const svg = select(svgRef.current);
+  console.log("chartType", chartType);
+  const data = await setChartData(rawData, chartType);
+  const tickLabels = await setTickLabels(rawData, chartType);
+  const height = await setChartHeight(chartType);
 
-  let data = [];
-  let tickLabels = [];
-  let height = 150;
-
-  if (chartType === 4) {
-    height = 250;
-
-    svg.attr("class", "Conference");
-
-    data = rawData[chartType - 4].concat(rawData[chartType - 3]);
-
-    tickLabels = data.map((teamRecords) => {
-      return teamRecords.team.name;
-    });
-
-    data = data.map((teamRecords) => {
-      return teamRecords.points;
-    });
-  } else {
-    rawData[chartType].sort((a, b) => a.points - b.points);
-    data = rawData[chartType].map((teamRecords) => {
-      return teamRecords.points;
-    });
-
-    tickLabels = rawData[chartType].map((teamRecords) => {
-      return teamRecords.team.name;
-    });
-  }
+  console.log(tickLabels);
 
   data.sort((a, b) => a - b);
   console.log(data);

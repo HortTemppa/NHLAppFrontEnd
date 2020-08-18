@@ -10,6 +10,7 @@ import Central from "./divisions/Central";
 import Pacific from "./divisions/Pacific";
 import Eastern from "./conferences/Eastern";
 import Western from "./conferences/Western";
+import League from "./league/League";
 
 import SelectStandings from "./navigation/SelectStandings";
 
@@ -28,8 +29,6 @@ const Standings = () => {
       setData(result.data);
     });
   }, [windowSize]);
-
-  console.log(data);
 
   const chartChangeHandler = (event) => {
     setTableType(parseInt(event.target.value));
@@ -77,6 +76,13 @@ const Standings = () => {
           <>
             <SelectStandings chartChange={chartChangeHandler} />
             <Western rawData={data} chartTypeId={tableType} />
+          </>
+        );
+      case 7:
+        return (
+          <>
+            <SelectStandings chartChange={chartChangeHandler} />
+            <League rawData={data} chartTypeId={tableType} />
           </>
         );
     }

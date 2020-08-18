@@ -1,9 +1,16 @@
 import { select, axisBottom, axisLeft, scaleLinear, scaleBand } from "d3";
 
-import { handleMouseClick, handleMouseOver } from "./mouseEvents";
+import { handleMouseOver } from "./mouseEvents";
 import { getRandomColor } from "./getRandomColor";
 
-export function createSVG(height, data, tickLabels, setSelectedTeam, svgRef) {
+export function createSVG(
+  height,
+  data,
+  tickLabels,
+  setSelectedTeam,
+  svgRef,
+  handleMouseClick
+) {
   const chartLength = data.map((value, i) => {
     return i + 1;
   });
@@ -23,6 +30,8 @@ export function createSVG(height, data, tickLabels, setSelectedTeam, svgRef) {
     .ticks(chartLength.length)
     .tickFormat((d, i) => tickLabels[i]);
 
+  svg.style("height", `${height}px`);
+
   svg
     .select(".x-axis")
     .style("transform", `translateY(${height}px`)
@@ -37,15 +46,17 @@ export function createSVG(height, data, tickLabels, setSelectedTeam, svgRef) {
     .attr("id", (value, index) => index)
     .attr("class", "bar")
     .attr("y", (value, index) => yScale(index + 1))
-    .attr("x", svg.style("width") - xScale)
+    .attr("x", (value, index) => svg.style("width") - xScale(index))
     .attr("width", (value, index) => xScale(value))
     .attr("height", yScale.bandwidth())
-    .style("fill", getRandomColor)
-    .on("mouseover", (value, index) =>
-      handleMouseOver(value, index, xScale, yScale, svg)
-    )
-    .on("mouseleave", () => svg.select(".tooltip").remove())
-    .on("mousedown", (value, index) =>
-      handleMouseClick(index, setSelectedTeam, data)
-    );
+    .style("fill", (value, index) => getRandomColor(index))
+    .on("mouseover", (value, index) => {
+      handleMouseOver(value, index, xScale, yScale, svg);
+      svg.select(`rect[id="${index}"]`).style("stroke", "black");
+    })
+    .on("mouseleave", (value, index) => {
+      svg.select(".tooltip").remove();
+      svg.select(`rect[id="${index}"]`).style("stroke", "none");
+    })
+    .on("mousedown", (value, index) => handleMouseClick(index));
 }

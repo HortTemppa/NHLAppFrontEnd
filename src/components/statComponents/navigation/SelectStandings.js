@@ -9,7 +9,7 @@ const SelectStandings = ({ chartChange }) => {
       <option value="4">Pacific</option>
       <option value="5">Eastern Conference</option>
       <option value="6">Western Conference</option>
-      <option>League</option>
+      <option value="7">League</option>
     </select>
   );
 };

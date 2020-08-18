@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createStandingsChart } from "../../../utilities/createStandingsChart";
+import StandingsView from "../teams/StandingsView";
 
 const Pacific = ({ rawData, chartTypeId }) => {
   const svgRef = useRef();
@@ -14,13 +15,18 @@ const Pacific = ({ rawData, chartTypeId }) => {
   }, [rawData]);
 
   return (
-    <>
+    <div className="StandingsWrapper">
       <h1>Pacific</h1>
       <svg ref={svgRef}>
         <g className="x-axis" />
         <g className="y-axis" />
       </svg>
-    </>
+      <StandingsView
+        selectedTeam={selectedTeam}
+        rawData={rawData}
+        chartType={chartType}
+      />
+    </div>
   );
 };
 

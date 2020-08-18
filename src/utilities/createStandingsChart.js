@@ -3,6 +3,7 @@ import { setChartHeight } from "./setChartHeight";
 import { setTickLabels } from "./setTickLabels";
 import { createSVG } from "./createSVG";
 import { sortDataAscending } from "./dataSorts";
+import { handleMouseClick } from "./mouseEvents";
 
 export async function createStandingsChart(
   rawData,
@@ -14,7 +15,17 @@ export async function createStandingsChart(
   const tickLabels = await setTickLabels(rawData, chartType);
   const height = await setChartHeight(chartType);
 
-  sortDataAscending(data);
+  await sortDataAscending(data);
 
-  createSVG(height, data, tickLabels, setSelectedTeam, svgRef);
+  const mouseClickHandler = (index) =>
+    handleMouseClick(index, rawData, chartType, setSelectedTeam);
+
+  createSVG(
+    height,
+    data,
+    tickLabels,
+    setSelectedTeam,
+    svgRef,
+    mouseClickHandler
+  );
 }

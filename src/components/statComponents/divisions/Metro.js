@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createStandingsChart } from "../../../utilities/createStandingsChart";
+import StandingsView from "../teams/StandingsView";
 
 const Metro = ({ rawData, chartTypeId }) => {
   const svgRef = useRef();
@@ -13,14 +14,20 @@ const Metro = ({ rawData, chartTypeId }) => {
     }
   }, [rawData]);
 
+  console.log("selected:", selectedTeam);
   return (
-    <>
+    <div className="StandingsWrapper">
       <h1>Metro</h1>
       <svg ref={svgRef}>
         <g className="x-axis" />
         <g className="y-axis" />
       </svg>
-    </>
+      <StandingsView
+        selectedTeam={selectedTeam}
+        rawData={rawData}
+        chartType={chartType}
+      />
+    </div>
   );
 };
 

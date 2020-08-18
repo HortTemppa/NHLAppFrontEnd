@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createStandingsChart } from "../../../utilities/createStandingsChart";
+
 import StandingsView from "../teams/StandingsView";
 
-const Western = ({ rawData, chartTypeId }) => {
+const League = ({ rawData, chartTypeId }) => {
   const svgRef = useRef();
   const [selectedTeam, setSelectedTeam] = useState();
 
@@ -16,7 +17,7 @@ const Western = ({ rawData, chartTypeId }) => {
 
   return (
     <>
-      <h1>Western Conference</h1>
+      <h1>League</h1>
       <svg ref={svgRef}>
         <g className="x-axis" />
         <g className="y-axis" />
@@ -30,4 +31,4 @@ const Western = ({ rawData, chartTypeId }) => {
   );
 };
 
-export default Western;
+export default League;

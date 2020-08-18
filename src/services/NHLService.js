@@ -8,6 +8,10 @@ class NHLService {
   getStandings() {
     return axios.get(`${baseUrl}/leagueStandings`);
   }
+
+  getTeam(id) {
+    return axios.get(`${baseUrl}/team/${id}`);
+  }
 }
 
 export default NHLService;

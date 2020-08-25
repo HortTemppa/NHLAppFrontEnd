@@ -1,7 +1,7 @@
 import { select, axisBottom, axisLeft, scaleLinear, scaleBand } from "d3";
 
-import { handleMouseOver } from "./mouseEvents";
-import { getRandomColor } from "./getRandomColor";
+import { handleMouseOver } from "../general/mouseEvents";
+import { getRandomColor } from "../general/getRandomColor";
 
 export function createSVG(
   height,

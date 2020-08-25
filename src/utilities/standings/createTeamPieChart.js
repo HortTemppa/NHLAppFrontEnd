@@ -1,4 +1,4 @@
-import { select, pie, entries, arc, scaleOrdinal, remove } from "d3";
+import { select, pie, entries, arc, scaleOrdinal } from "d3";
 
 export function createTeamPieChart(svgRef, data) {
   const width = 160;

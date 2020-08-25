@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { createStandingsChart } from "../../../utilities/createStandingsChart";
+import { createStandingsChart } from "../../../utilities/standings/createStandingsChart";
 import StandingsView from "../teams/StandingsView";
 
 const Central = ({ rawData, chartTypeId }) => {
@@ -12,7 +12,7 @@ const Central = ({ rawData, chartTypeId }) => {
     if (rawData) {
       createStandingsChart(rawData, svgRef, setSelectedTeam, chartType);
     }
-  }, [rawData]);
+  }, [rawData, chartType]);
 
   return (
     <div className="StandingsWrapper">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNHLService } from "../../NHLContext";
-import { sortRawDataAscending } from "../../../utilities/dataSorts";
-import { createTeamPieChart } from "../../../utilities/createTeamPieChart";
+import { sortRawDataAscending } from "../../../utilities/standings/dataSorts";
+import { createTeamPieChart } from "../../../utilities/standings/createTeamPieChart";
 
 const StandingsView = ({ selectedTeam, rawData, chartType }) => {
   const NHLService = useNHLService();
@@ -18,15 +18,13 @@ const StandingsView = ({ selectedTeam, rawData, chartType }) => {
         let data = await sortRawDataAscending(rawData, chartType);
 
         data = await data.filter((team) => team.team.id === selectedTeam);
-        console.log(data);
+
         await setTeamData(data);
         createTeamPieChart(svgRef, data);
       });
     }
-  }, [selectedTeam, rawData, chartType]);
+  }, [selectedTeam, rawData, chartType, NHLService]);
 
-  console.log("info:", teamInfo);
-  console.log("Data:", teamData);
   return teamData ? (
     <div className="TeamView">
       <h1>{teamData[0].team.name}</h1>

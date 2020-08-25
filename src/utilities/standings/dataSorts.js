@@ -1,5 +1,3 @@
-import Eastern from "../components/statComponents/conferences/Eastern";
-
 export function sortDataAscending(data) {
   data.sort((a, b) => a - b);
 }
@@ -29,5 +27,8 @@ export function sortRawDataAscending(data, chartType) {
       leagueArray.sort((a, b) => a.points - b.points);
 
       return leagueArray;
+
+    default:
+      break;
   }
 }

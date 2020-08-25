@@ -2,11 +2,15 @@ export function handleMouseOver(value, index, xScale, yScale, svg) {
   svg
     .selectAll(".tooltip")
     .data([value])
-    .join("text")
+    .join((enter) => enter.append("text").attr("x", xScale(value) - 5))
     .attr("class", "tooltip")
     .text(`${value}pts`)
-    .attr("x", xScale(value) + 5) //xScale(index + 1) + yScale.bandwidth() / 2)
-    .attr("y", yScale(index + 1) + yScale.bandwidth());
+    .attr("y", yScale(index + 1) + yScale.bandwidth())
+
+    .transition()
+    .attr("x", xScale(value) + 5)
+
+    .attr("opacity", 1);
 }
 
 export function handleMouseClick(index, rawData, chartType, setSelectedTeam) {
@@ -34,7 +38,9 @@ export function handleMouseClick(index, rawData, chartType, setSelectedTeam) {
       leagueArray.sort((a, b) => a.points - b.points);
       setSelectedTeam(leagueArray[index].team.id);
       break;
+    default:
   }
-  console.log("index:", index);
-  //setSelectedTeam(data[index].team.id);
+}
+export function handlePlayerClick(index, setSelected) {
+  setSelected(index);
 }

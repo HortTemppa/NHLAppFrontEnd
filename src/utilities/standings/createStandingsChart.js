@@ -3,7 +3,7 @@ import { setChartHeight } from "./setChartHeight";
 import { setTickLabels } from "./setTickLabels";
 import { createSVG } from "./createSVG";
 import { sortDataAscending } from "./dataSorts";
-import { handleMouseClick } from "./mouseEvents";
+import { handleMouseClick } from "../general/mouseEvents";
 
 export async function createStandingsChart(
   rawData,

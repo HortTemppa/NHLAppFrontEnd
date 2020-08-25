@@ -1,7 +1,8 @@
 import React from "react";
+import Leaderboards from "./playerstats/Leaderboards";
 
 const Players = () => {
-  return <p>Player Statistics</p>;
+  return <Leaderboards />;
 };
 
 export default Players;

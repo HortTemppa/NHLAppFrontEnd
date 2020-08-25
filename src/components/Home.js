@@ -17,18 +17,18 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div className="HomeMenuWrapper">
       <div className="GreyBox" onClick={handleStandingsClick}>
-        Standings
+        <span> Standings</span>
       </div>
 
       <div className="DarkBox" onClick={handleTeamsClick}>
-        Teams
+        <span>Teams</span>
       </div>
       <div className="GreyBox" onClick={handlePlayersClick}>
-        Players
+        <span>Players</span>
       </div>
-    </>
+    </div>
   );
 };
 

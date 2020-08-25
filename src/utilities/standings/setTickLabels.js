@@ -38,6 +38,8 @@ export async function setTickLabels(rawData, chartType) {
       tickLabels = leagueArray.map((teamRecords) => {
         return teamRecords.team.name;
       });
+      break;
+    default:
   }
 
   return tickLabels;

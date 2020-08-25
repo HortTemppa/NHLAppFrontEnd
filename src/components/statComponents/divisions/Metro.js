@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { createStandingsChart } from "../../../utilities/createStandingsChart";
+import { createStandingsChart } from "../../../utilities/standings/createStandingsChart";
 import StandingsView from "../teams/StandingsView";
 
 const Metro = ({ rawData, chartTypeId }) => {
@@ -12,9 +12,8 @@ const Metro = ({ rawData, chartTypeId }) => {
     if (rawData) {
       createStandingsChart(rawData, svgRef, setSelectedTeam, chartType);
     }
-  }, [rawData]);
+  }, [rawData, chartType]);
 
-  console.log("selected:", selectedTeam);
   return (
     <div className="StandingsWrapper">
       <h1>Metro</h1>

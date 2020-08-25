@@ -9,11 +9,13 @@ h1 {
 body {
   font-family: "Alata", sans-serif;
   background-color: oldlace;
+  padding-bottom: 25px;
 }
 select {
   display: block;
   margin: auto;
 }
+
 .x-axis {
   font-size: 10px;
 }
@@ -33,6 +35,11 @@ svg {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
+}
+
+.HomeMenuWrapper {
+  display: grid;
+  grid-template-columns: 100%;
 }
 
 .StandingsWrapper {
@@ -86,10 +93,13 @@ h1 {
 }
 
 .GreyBox {
-  width: 75%;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: auto;
   text-align: center;
   background-color: lightgrey;
   height: 100px;
@@ -97,7 +107,12 @@ h1 {
 }
 
 .DarkBox {
-  width: 75%;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  color: white;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: auto;

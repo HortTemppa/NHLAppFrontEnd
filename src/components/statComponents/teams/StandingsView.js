@@ -31,12 +31,19 @@ const StandingsView = ({ selectedTeam, rawData, chartType }) => {
 
       <div className="PieChartGP">
         <svg ref={svgRef} className="PieChart"></svg>
-        <div className="GamesPlayed">
-          <span>Games Played: {teamData[0].gamesPlayed}</span>Goals Scored:{" "}
-          {teamData[0].goalsScored}
-          <span>
-            <span>Goals Against: {teamData[0].goalsAgainst}</span>
-          </span>
+        <div className="PlayerStats">
+          <div className="MinorStat">
+            <h3> {teamData[0].gamesPlayed}</h3>
+            <span>GP</span>
+          </div>
+          <div className="MinorStat">
+            <h3> {teamData[0].goalsScored}</h3>
+            <span>GS</span>
+          </div>
+          <div className="MinorStat">
+            <h3> {teamData[0].goalsAgainst}</h3>
+            <span>GA</span>
+          </div>
         </div>
       </div>
     </div>

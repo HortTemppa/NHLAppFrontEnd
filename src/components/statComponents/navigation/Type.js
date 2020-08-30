@@ -5,7 +5,7 @@ const Type = ({ setType }) => {
     setType(event.target.value);
   };
   return (
-    <select onChange={handleTypeChange}>
+    <select className="Select" onChange={handleTypeChange}>
       <option value="2">Regular Season</option>
       <option value="3">Playoffs</option>
     </select>

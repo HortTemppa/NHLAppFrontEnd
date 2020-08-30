@@ -9,7 +9,7 @@ export async function setChartHeight(chartType) {
 
     return height;
   } else {
-    const height = await 150;
+    const height = await 250;
     return height;
   }
 }

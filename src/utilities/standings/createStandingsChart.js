@@ -11,7 +11,7 @@ export async function createStandingsChart(
   setSelectedTeam,
   chartType
 ) {
-  const data = await setChartData(rawData, chartType);
+  const data = await setChartData(rawData, chartType, setSelectedTeam);
   const tickLabels = await setTickLabels(rawData, chartType);
   const height = await setChartHeight(chartType);
 

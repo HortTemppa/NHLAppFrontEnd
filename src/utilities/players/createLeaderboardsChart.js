@@ -6,12 +6,12 @@ export async function createLeaderboardsChart(
   rawData,
   sortBy,
   svgRef,
-  setSelectedPlayer
+  setSelectedPlayer,
+  height
 ) {
   console.log(rawData);
   let data = await setChartData(rawData, sortBy);
   let tickLabels = await setTickLabels(rawData);
-  const height = 700;
 
   console.log("data", data);
   console.log("tick labels:", tickLabels);

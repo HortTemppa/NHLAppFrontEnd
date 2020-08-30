@@ -10,6 +10,7 @@ const Leaderboards = ({}) => {
   const NHLService = useNHLService();
 
   const [data, setData] = useState();
+  const [dataLength, setDataLength] = useState(10);
   const [sortBy, setSortBy] = useState("points");
   const [season, setSeason] = useState("20192020");
   const [type, setType] = useState("2");
@@ -20,19 +21,26 @@ const Leaderboards = ({}) => {
     }
 
     NHLService.getLeaderboards(type, sortBy, season).then((result) => {
-      result.data.data.reverse();
-      setData(result.data.data);
-    });
-  }, [NHLService, sortBy, season, type]);
+      const slicedData = result.data.data.slice(0, dataLength);
+      slicedData.reverse();
 
-  console.log(data);
+      setData(slicedData);
+    });
+  }, [NHLService, sortBy, season, type, dataLength]);
 
   return (
     <>
-      <SortBy setSortBy={setSortBy} />
-      <Season setSeason={setSeason} />
-      <Type setType={setType} />
-      <PointLeaders data={data} sortBy={sortBy} />
+      <div className="Dropdowns">
+        <SortBy setSortBy={setSortBy} />
+        <Season setSeason={setSeason} />
+        <Type setType={setType} />
+      </div>
+      <PointLeaders
+        data={data}
+        sortBy={sortBy}
+        setDataLength={setDataLength}
+        dataLength={dataLength}
+      />
     </>
   );
 };

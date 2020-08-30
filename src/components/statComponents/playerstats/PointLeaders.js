@@ -2,22 +2,48 @@ import React, { useRef, useState, useEffect } from "react";
 import { createLeaderboardsChart } from "../../../utilities/players/createLeaderboardsChart";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 
+import StatChart from "./StatChart";
 import PlayerView from "./PlayerView";
 
-const PointLeaders = ({ data, sortBy }) => {
+const PointLeaders = ({ data, sortBy, setDataLength, dataLength }) => {
   const svgRef = useRef();
-  const [selectedPlayer, setSelectedPlayer] = useState(49);
+  const [selectedPlayer, setSelectedPlayer] = useState(9);
+  const [svgHeight, setSvgHeight] = useState(250);
+
+  const [playerStatState, setPlayerStatState] = useState();
 
   const windowSize = useWindowSize();
 
+  const handleStatClick = (state) => {
+    return setPlayerStatState(state);
+  };
+
+  const handleButtonClick = () => {
+    if (dataLength === 50) {
+      setDataLength(10);
+      setSvgHeight(250);
+      setSelectedPlayer(9);
+    } else {
+      setDataLength(dataLength + 10);
+      setSvgHeight(svgHeight + 100);
+    }
+  };
+
   useEffect(() => {
-    if (!data) {
+    if (!data || !sortBy || !selectedPlayer || !dataLength) {
       return;
     }
-    createLeaderboardsChart(data, sortBy, svgRef, setSelectedPlayer);
-  }, [data, windowSize, sortBy, svgRef, selectedPlayer]);
-
-  console.log("selected player:", selectedPlayer);
+    createLeaderboardsChart(data, sortBy, svgRef, setSelectedPlayer, svgHeight);
+  }, [
+    data,
+    windowSize,
+    sortBy,
+    svgRef,
+    svgHeight,
+    selectedPlayer,
+    dataLength,
+    playerStatState,
+  ]);
 
   if (!data) {
     return null;
@@ -25,11 +51,16 @@ const PointLeaders = ({ data, sortBy }) => {
 
   return (
     <>
-      <svg ref={svgRef}>
-        <g className="x-axis"></g>
-        <g className="y-axis"></g>
-      </svg>
-      <PlayerView data={data[selectedPlayer]} />
+      <StatChart
+        handleButtonClick={handleButtonClick}
+        svgRef={svgRef}
+        dataLength={dataLength}
+      />
+      <PlayerView
+        data={data[selectedPlayer]}
+        handleStatClick={handleStatClick}
+        state={playerStatState}
+      />
     </>
   );
 };

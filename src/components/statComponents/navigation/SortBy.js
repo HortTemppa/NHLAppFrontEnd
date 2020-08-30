@@ -6,7 +6,7 @@ const SortBy = ({ setSortBy }) => {
   };
 
   return (
-    <select onChange={handleSortByChange}>
+    <select className="Select" onChange={handleSortByChange}>
       <option value="points">Points</option>
       <option value="goals">Goals</option>
       <option value="assists">Assists</option>

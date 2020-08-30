@@ -19,7 +19,7 @@ export function createSVG(height, data, tickLabels, svgRef, setSelectedPlayer) {
     .domain([0, data[data.length - 1] + 10])
     .range([0, parseInt(svg.style("width"))]);
 
-  const xAxis = axisBottom(xScale);
+  const xAxis = axisBottom(xScale).ticks(5);
 
   const yAxis = axisLeft(yScale)
     .ticks(chartLength.length)
@@ -29,9 +29,14 @@ export function createSVG(height, data, tickLabels, svgRef, setSelectedPlayer) {
 
   svg
     .select(".x-axis")
+    .transition()
     .style("transform", `translateY(${height}px`)
     .call(xAxis);
-  svg.select(".y-axis").call(yAxis);
+  svg
+    .select(".y-axis")
+    .style("font", "inherit")
+    .style("font-size", "12px")
+    .call(yAxis);
 
   svg
     .selectAll(".bar")
@@ -42,9 +47,6 @@ export function createSVG(height, data, tickLabels, svgRef, setSelectedPlayer) {
     .attr("class", "bar")
     .attr("y", (value, index) => yScale(index + 1))
     .attr("x", (value, index) => svg.style("width") - xScale(value))
-    .attr("width", (value, index) => xScale(value))
-    .attr("height", yScale.bandwidth())
-    .style("fill", (value, index) => getRandomColor(index))
     .on("mouseover", (value, index) => {
       handleMouseOver(value, index, xScale, yScale, svg);
       svg.select(`rect[id="${index}"]`).style("stroke", "black");
@@ -55,5 +57,9 @@ export function createSVG(height, data, tickLabels, svgRef, setSelectedPlayer) {
     })
     .on("mousedown", (value, index) =>
       handlePlayerClick(index, setSelectedPlayer)
-    );
+    )
+    .transition()
+    .attr("width", (value, index) => xScale(value))
+    .attr("height", yScale.bandwidth())
+    .style("fill", (value, index) => getRandomColor(index));
 }

@@ -36,7 +36,11 @@ export function createSVG(
     .select(".x-axis")
     .style("transform", `translateY(${height}px`)
     .call(xAxis);
-  svg.select(".y-axis").call(yAxis);
+  svg
+    .select(".y-axis")
+    .style("font", "inherit")
+    .style("font-size", "12px")
+    .call(yAxis);
 
   svg
     .selectAll(".bar")
@@ -47,9 +51,6 @@ export function createSVG(
     .attr("class", "bar")
     .attr("y", (value, index) => yScale(index + 1))
     .attr("x", (value, index) => svg.style("width") - xScale(index))
-    .attr("width", (value, index) => xScale(value))
-    .attr("height", yScale.bandwidth())
-    .style("fill", (value, index) => getRandomColor(index))
     .on("mouseover", (value, index) => {
       handleMouseOver(value, index, xScale, yScale, svg);
       svg.select(`rect[id="${index}"]`).style("stroke", "black");
@@ -58,5 +59,9 @@ export function createSVG(
       svg.select(".tooltip").remove();
       svg.select(`rect[id="${index}"]`).style("stroke", "none");
     })
-    .on("mousedown", (value, index) => handleMouseClick(index));
+    .on("mousedown", (value, index) => handleMouseClick(index))
+    .transition()
+    .attr("width", (value, index) => xScale(value))
+    .attr("height", yScale.bandwidth())
+    .style("fill", (value, index) => getRandomColor(index));
 }

@@ -25,6 +25,7 @@ const Western = ({ rawData, chartTypeId }) => {
         selectedTeam={selectedTeam}
         rawData={rawData}
         chartType={chartType}
+        setSelectedTeam={setSelectedTeam}
       />
     </>
   );

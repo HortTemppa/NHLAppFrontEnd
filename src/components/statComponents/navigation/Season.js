@@ -5,7 +5,7 @@ const Season = ({ setSeason }) => {
     setSeason(event.target.value);
   };
   return (
-    <select onChange={handleSeasonChange}>
+    <select className="Select" onChange={handleSeasonChange}>
       <option value="20192020">2019/2020</option>
       <option value="20182019">2018/2019</option>
       <option value="20172018">2017/2018</option>

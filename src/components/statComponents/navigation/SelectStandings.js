@@ -2,7 +2,7 @@ import React from "react";
 
 const SelectStandings = ({ chartChange }) => {
   return (
-    <select onChange={chartChange}>
+    <select className="Select" onChange={chartChange}>
       <option value="1">Metro</option>
       <option value="2">Atlantic</option>
       <option value="3">Central</option>

@@ -1,6 +1,14 @@
 import React from "react";
 
 const PlayerView = ({ data, handleStatClick, state }) => {
+  const classHandler = (type) => {
+    if (state === type) {
+      return "SelectedStat";
+    } else {
+      return "Stat";
+    }
+  };
+
   return (
     <>
       <div className="PlayerWrapper">
@@ -9,15 +17,24 @@ const PlayerView = ({ data, handleStatClick, state }) => {
           <span>{data.teamAbbrevs}</span>
         </div>
         <div className="PlayerStats">
-          <div onClick={() => handleStatClick("points")} className="Stat">
+          <div
+            onClick={() => handleStatClick("points")}
+            className={classHandler("points")}
+          >
             <h3>{data.points}</h3>
             <span>points</span>
           </div>
-          <div onClick={() => handleStatClick("goals")} className="Stat">
+          <div
+            onClick={() => handleStatClick("goals")}
+            className={classHandler("goals")}
+          >
             <h3>{data.goals}</h3>
             <span>goals</span>
           </div>
-          <div onClick={() => handleStatClick("assists")} className="Stat">
+          <div
+            onClick={() => handleStatClick("assists")}
+            className={classHandler("assists")}
+          >
             <h3>{data.assists}</h3>
             <span>assists</span>
           </div>

@@ -151,11 +151,12 @@ svg {
   margin-top: 25px;
   display: grid;
   grid-template-columns: 100%;
-  margin-left: 12.5%;
-  margin-right: 12.5%;
+  margin-left: 6%;
+  margin-right: 6%;
   border-radius: 15px;
   border: 2px solid black;
   height: 400px;
+  padding: 10px;
 }
 
 h1 {
@@ -279,10 +280,22 @@ h1 {
 }
 
 .Stat:hover {
-  background-color: black;
+  background-color: rgba(0, 0, 255, 0.555);
   color: white;
   cursor: pointer;
   transition: background-color 0.5s, color 0.5s;
+}
+
+.SelectedStat {
+  border-radius: 50px;
+  border: 2px solid blue;
+  background-color: rgba(0, 0, 255, 0.555);
+  color: white;
+  margin: 0px;
+  margin-top: 20px;
+  height: 70px;
+  width: 80px;
+  padding-top: 10px;
 }
 
 .ButtonWrapper {
@@ -305,6 +318,20 @@ button:hover {
   color: white;
   background-color: black;
   transition: background-color 0.5s, color 0.5s;
+}
+
+.Loading {
+  font-size: 28px;
+  text-align: center;
+}
+
+.MenuWrapper {
+  margin-top: 10px;
+  margin-left: 6.25%;
+}
+
+.MenuItem:hover {
+  cursor: pointer;
 }
 
 @media screen and (min-width: 800px) {
@@ -331,5 +358,9 @@ button:hover {
   .TeamView {
     margin-left: 30%;
     margin-right: 30%;
+  }
+  .MenuWrapper {
+    margin-top: 10px;
+    margin-left: 25%;
   }
 }

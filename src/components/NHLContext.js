@@ -3,8 +3,10 @@ import NHLService from "../services/NHLService";
 
 export const NHLContext = createContext(undefined);
 
-export const NHLProvider = ({ children }) => {
+export const NHLProvider = ({ children, onLoggedInChange }) => {
   const hockeyService = useMemo(() => new NHLService(), []);
+
+  onLoggedInChange && hockeyService.onLoggedInChange(onLoggedInChange);
 
   return (
     <NHLContext.Provider value={hockeyService}>{children}</NHLContext.Provider>

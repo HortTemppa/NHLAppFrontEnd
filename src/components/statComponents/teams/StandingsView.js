@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNHLService } from "../../NHLContext";
 import { sortRawDataAscending } from "../../../utilities/standings/dataSorts";
 import { createTeamPieChart } from "../../../utilities/standings/createTeamPieChart";
+import Loading from "../../Loading";
 
 const StandingsView = ({ selectedTeam, rawData, chartType }) => {
   const NHLService = useNHLService();
@@ -47,7 +48,9 @@ const StandingsView = ({ selectedTeam, rawData, chartType }) => {
         </div>
       </div>
     </div>
-  ) : null;
+  ) : (
+    <Loading />
+  );
 };
 
 export default StandingsView;

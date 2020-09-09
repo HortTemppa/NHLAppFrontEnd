@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import TopMenu from "./components/TopMenu";
@@ -9,10 +9,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { NHLProvider } from "./components/NHLContext";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState();
+
   return (
-    <NHLProvider>
+    <NHLProvider onLoggedInChange={setLoggedIn}>
       <Router>
-        <TopMenu />
+        <TopMenu loggedIn={loggedIn} />
         <Header />
         <Content />
       </Router>

@@ -10,7 +10,7 @@ const PointLeaders = ({ data, sortBy, setDataLength, dataLength }) => {
   const [selectedPlayer, setSelectedPlayer] = useState(9);
   const [svgHeight, setSvgHeight] = useState(250);
 
-  const [playerStatState, setPlayerStatState] = useState();
+  const [playerStatState, setPlayerStatState] = useState("assists");
 
   const windowSize = useWindowSize();
 

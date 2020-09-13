@@ -2,6 +2,7 @@ import axios from "axios";
 import { setupCache } from "axios-cache-adapter";
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 import cookies from "browser-cookies";
 
 const firebaseConfig = {
@@ -16,6 +17,8 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
 
 const baseUrl = "http://192.168.8.101:3001/api/nhl";
 
@@ -71,29 +74,94 @@ class NHLService {
     this.loggedInChangeListener(false);
   }
 
+  async checkIfUserExists(uid) {
+    const collection = await db.collection("users");
+
+    console.log(collection);
+    return await collection
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        console.log("doc", doc);
+        if (doc.exists) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+  }
+
+  getUserId() {
+    return this.userId;
+  }
+
+  registerUser(uid) {
+    const collection = db.collection("users");
+
+    collection
+      .doc(`${this.userId}`)
+      .set({ favoriteTeams: null, favoritePlayers: null });
+    document.cookie = `id=${this.userId}; max-age=10`;
+
+    this.loggedIn = true;
+    this.loggedInChangeListener(true);
+    return;
+  }
+
   googleClick() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().useDeviceLanguage();
-
     return firebase
       .auth()
       .signInWithPopup(provider)
-      .then((result) => {
-        console.log(result.user);
-        console.log(result.credential.accessToken);
+      .then(async (result) => {
+        let userExists = await this.checkIfUserExists(result.user.uid);
 
-        document.cookie = `id=${this.id}; max-age=10`;
+        if (userExists) {
+          document.cookie = `id=${result.user.uid}; max-age=3600`;
 
-        this.userId = result.user.uid;
-        this.loggedIn = true;
-        this.loggedInChangeListener(true);
+          this.userId = result.user.uid;
+          this.loggedIn = true;
+          this.loggedInChangeListener(true);
 
-        return result.user.uid;
+          return true;
+        } else {
+          this.userId = result.user.uid;
+          return false;
+        }
       })
       .catch((error) => {
         console.log(error.message);
         this.loggedInChangeListener(false);
       });
+  }
+
+  async addFavoritePlayer(playerId) {
+    const collection = await db.collection("users");
+
+    collection.doc(this.userId).update({
+      favoritePlayers: firebase.firestore.FieldValue.arrayUnion(playerId),
+    });
+  }
+
+  async removeFavoritePlayer(playerId) {
+    const collection = await db.collection("users");
+
+    collection.doc(this.userId).update({
+      favoritePlayers: firebase.firestore.FieldValue.arrayRemove(playerId),
+    });
+  }
+
+  async checkIfPlayerIsFavorited(playerId) {
+    const collection = await db.collection("users");
+
+    const favorites = await collection.doc(this.userId).get();
+
+    const playerIncludedInFavorites = favorites
+      .data()
+      .favoritePlayers.includes(playerId);
+
+    return playerIncludedInFavorites;
   }
 }
 

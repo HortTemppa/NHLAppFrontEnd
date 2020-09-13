@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNHLService } from "../../NHLContext";
+import StarIcon from "@material-ui/icons/Star";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 const PlayerView = ({ data, handleStatClick, state }) => {
+  const [playerFavorited, setPlayerFavorited] = useState();
+
+  const NHLService = useNHLService();
+  const loggedIn = NHLService.checkLogin();
+
+  console.log(data);
+
+  const handleFavoriteClick = () => {
+    if (playerFavorited) {
+      NHLService.removeFavoritePlayer(data.playerId);
+      setPlayerFavorited(false);
+    } else {
+      NHLService.addFavoritePlayer(data.playerId);
+      setPlayerFavorited(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!loggedIn) {
+      return;
+    }
+
+    NHLService.checkIfPlayerIsFavorited(data.playerId).then((result) =>
+      setPlayerFavorited(result)
+    );
+  }, [NHLService, loggedIn, data]);
+
   const classHandler = (type) => {
     if (state === type) {
       return "SelectedStat";
@@ -12,6 +42,17 @@ const PlayerView = ({ data, handleStatClick, state }) => {
   return (
     <>
       <div className="PlayerWrapper">
+        {loggedIn ? (
+          playerFavorited ? (
+            <button className="FavoriteButton" onClick={handleFavoriteClick}>
+              <StarIcon fontSize="small" />
+            </button>
+          ) : (
+            <button className="FavoriteButton" onClick={handleFavoriteClick}>
+              <StarBorderIcon fontSize="small" />{" "}
+            </button>
+          )
+        ) : null}
         <div className="PlayerNameTeam">
           <h2>{data.skaterFullName}</h2>
           <span>{data.teamAbbrevs}</span>

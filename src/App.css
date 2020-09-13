@@ -191,10 +191,19 @@ h1 {
   width: 100%;
 }
 
-.LoginButton {
-  justify-content: right;
+.RegisterWrapper {
+  text-align: center;
 }
 
+.TermsNotChecked {
+  opacity: 0.5;
+}
+
+.TermsNotChecked:hover {
+  background-color: inherit;
+  color: inherit;
+  cursor: not-allowed;
+}
 .Header {
   text-align: center;
 }
@@ -231,6 +240,7 @@ h1 {
 }
 
 .PlayerWrapper {
+  position: relative;
   background-color: rgb(255, 255, 255);
   margin-left: 12.5%;
   margin-right: 12.5%;
@@ -246,7 +256,7 @@ h1 {
   display: grid;
   grid-template-columns: 100%;
   text-align: center;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 .PlayerStats {
@@ -303,7 +313,7 @@ h1 {
   margin-top: 35px;
 }
 
-.ButtoWrapper,
+.ButtonWrapper,
 button {
   font: inherit;
   font-size: 16px;
@@ -313,11 +323,37 @@ button {
   background-color: white;
 }
 
-button:hover {
+.Favorite {
+  font: inherit;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  color: Black;
+  background-color: white;
+}
+
+.Unfavorite {
+  font: inherit;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  color: unset;
+  background-color: unset;
+}
+
+.ButtonWrapper button:hover {
   cursor: pointer;
   color: white;
   background-color: black;
   transition: background-color 0.5s, color 0.5s;
+}
+
+.FavoriteButton {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  color: blue;
+  border: solid 1px black;
 }
 
 .Loading {

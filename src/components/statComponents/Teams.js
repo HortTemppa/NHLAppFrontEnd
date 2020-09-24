@@ -1,7 +1,8 @@
 import React from "react";
+import TeamView from "./teams/TeamView";
 
 const Teams = () => {
-  return <p>Teams.</p>;
+  return <TeamView />;
 };
 
 export default Teams;

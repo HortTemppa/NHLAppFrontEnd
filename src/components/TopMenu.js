@@ -8,10 +8,11 @@ import Stars from "@material-ui/icons/Stars";
 import { useHistory } from "react-router-dom";
 import { useNHLService } from "./NHLContext";
 
-const TopMenu = ({ loggedIn }) => {
+const TopMenu = () => {
   const NHLService = useNHLService();
 
-  console.log(NHLService.checkLogin());
+  const loggedIn = NHLService.checkLogin();
+  
   const history = useHistory();
 
   const handleHomeClick = () => {

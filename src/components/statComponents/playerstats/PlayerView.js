@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useNHLService } from "../../NHLContext";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import { useHistory } from "react-router-dom";
 
 const PlayerView = ({ data, handleStatClick, state }) => {
   const [playerFavorited, setPlayerFavorited] = useState();
 
+  const history = useHistory();
   const NHLService = useNHLService();
   const loggedIn = NHLService.checkLogin();
 
-  console.log(data);
+  console.log(loggedIn);
 
+  const handlePlayerCardClick = () => {
+    history.push(`/players/${data.playerId}`);
+  };
   const handleFavoriteClick = () => {
     if (playerFavorited) {
       NHLService.removeFavoritePlayer(data.playerId);
@@ -125,6 +130,9 @@ const PlayerView = ({ data, handleStatClick, state }) => {
               </div>
             </>
           )}
+        </div>
+        <div className="ButtonWrapper">
+          <button onClick={handlePlayerCardClick}>Full Player Card</button>
         </div>
       </div>
     </>

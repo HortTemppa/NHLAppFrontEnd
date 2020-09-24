@@ -46,8 +46,20 @@ class NHLService {
     return api.get(`${baseUrl}/leagueStandings`);
   }
 
+  getTeams() {
+    return api.get(`${baseUrl}/teams`);
+  }
+
   getTeam(id) {
     return api.get(`${baseUrl}/team/${id}`);
+  }
+
+  getPlayer(id) {
+    return api.get(`${baseUrl}/player/${id}/20192020`);
+  }
+
+  getTeamRoster(id) {
+    return api.get(`${baseUrl}/teamPlayers/${id}`);
   }
 
   getLeaderboards(type, sortBy, season) {
@@ -58,10 +70,8 @@ class NHLService {
     if (document.cookie) {
       this.userId = cookies.get("id");
       this.loggedIn = true;
-      this.loggedInChangeListener(true);
     } else {
       this.loggedIn = false;
-      this.loggedInChangeListener(false);
     }
     return this.loggedIn;
   }
@@ -162,6 +172,34 @@ class NHLService {
       .favoritePlayers.includes(playerId);
 
     return playerIncludedInFavorites;
+  }
+
+  async checkIfTeamIsFavorited(teamId) {
+    const collection = await db.collection("users");
+
+    const favorites = await collection.doc(this.userId).get();
+
+    const teamIncludedInFavorites = favorites
+      .data()
+      .favoriteTeams.includes(teamId);
+
+    return teamIncludedInFavorites;
+  }
+
+  async addFavoriteTeam(teamId) {
+    const collection = await db.collection("users");
+
+    collection.doc(this.userId).update({
+      favoriteTeams: firebase.firestore.FieldValue.arrayUnion(teamId),
+    });
+  }
+
+  async removeFavoriteTeam(teamId) {
+    const collection = await db.collection("users");
+
+    collection.doc(this.userId).update({
+      favoriteTeams: firebase.firestore.FieldValue.arrayRemove(teamId),
+    });
   }
 }
 

@@ -368,6 +368,18 @@ h1 {
   padding-top: 10px;
 }
 
+.HomeButtonWrapper {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.HomeButtonWrapper button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  transition: background-color 0.5s, color 0.5s;
+}
+
 .ButtonWrapper {
   text-align: center;
   margin-top: 35px;
@@ -380,6 +392,10 @@ button {
   padding: 10px;
   border-radius: 5px;
   color: black;
+}
+
+.HomeButtonWrapper button {
+  font-size: 24px;
 }
 
 .Favorite {

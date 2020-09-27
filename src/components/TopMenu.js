@@ -12,7 +12,7 @@ const TopMenu = () => {
   const NHLService = useNHLService();
 
   const loggedIn = NHLService.checkLogin();
-  
+
   const history = useHistory();
 
   const handleHomeClick = () => {
@@ -21,6 +21,10 @@ const TopMenu = () => {
 
   const handleLoginClick = () => {
     history.push("/login");
+  };
+
+  const handleFavoriteClick = () => {
+    history.push("/favorites");
   };
 
   const handleLogoutClick = async () => {
@@ -32,7 +36,11 @@ const TopMenu = () => {
   return loggedIn ? (
     <div className="MenuWrapper">
       <Home className="MenuItem" onClick={handleHomeClick} fontSize="large" />
-      <Stars className="MenuItem" fontSize="large" />
+      <Stars
+        onClick={handleFavoriteClick}
+        className="MenuItem"
+        fontSize="large"
+      />
       <ExitToApp
         className="MenuItem"
         onClick={handleLogoutClick}

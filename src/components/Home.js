@@ -17,16 +17,15 @@ const Home = () => {
   };
 
   return (
-    <div className="HomeMenuWrapper">
-      <div className="GreyBox" onClick={handleStandingsClick}>
-        <span> Standings</span>
+    <div>
+      <div className="HomeButtonWrapper">
+        <button onClick={handleStandingsClick}>Standings</button>
       </div>
-
-      <div className="DarkBox" onClick={handleTeamsClick}>
-        <span>Teams</span>
+      <div className="HomeButtonWrapper">
+        <button onClick={handleTeamsClick}>Teams</button>
       </div>
-      <div className="GreyBox" onClick={handlePlayersClick}>
-        <span>Players</span>
+      <div className="HomeButtonWrapper">
+        <button onClick={handlePlayersClick}>Players</button>
       </div>
     </div>
   );

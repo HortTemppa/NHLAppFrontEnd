@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+
 import { useParams } from "react-router-dom";
 import { useNHLService } from "../NHLContext";
+
+import Loading from "../Loading";
 import FullPlayerView from "./playerstats/FullPlayerView";
 
 const SinglePlayer = ({}) => {
@@ -20,7 +23,7 @@ const SinglePlayer = ({}) => {
 
   console.log(playerData);
 
-  return playerData ? <FullPlayerView data={playerData} /> : null;
+  return playerData ? <FullPlayerView data={playerData} /> : <Loading />;
 };
 
 export default SinglePlayer;

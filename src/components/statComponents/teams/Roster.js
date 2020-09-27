@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Loading from "../../Loading";
 import { useNHLService } from "../../NHLContext";
 
 const Roster = ({ teamId }) => {
@@ -66,7 +67,9 @@ const Roster = ({ teamId }) => {
         })}
       </div>
     </>
-  ) : null;
+  ) : (
+    <Loading />
+  );
 };
 
 export default Roster;

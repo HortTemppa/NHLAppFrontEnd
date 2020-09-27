@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Loading from "../../Loading";
 
 import { useNHLService } from "../../NHLContext";
 
@@ -16,12 +17,7 @@ const TeamView = () => {
     });
   }, [NHLService]);
 
-  console.log(teamData);
-  if (!teamData) {
-    return null;
-  }
-
-  return (
+  return teamData ? (
     <>
       <div className="TeamWrapper">
         {teamData.map((result, i) => {
@@ -37,6 +33,8 @@ const TeamView = () => {
         })}
       </div>
     </>
+  ) : (
+    <Loading />
   );
 };
 

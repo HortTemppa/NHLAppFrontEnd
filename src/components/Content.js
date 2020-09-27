@@ -9,6 +9,7 @@ import SingleTeam from "./statComponents/SingleTeam";
 import SinglePlayer from "./statComponents/SinglePlayer";
 import Standings from "./statComponents/Standings";
 import Login from "./loginComponents/Login";
+import Favorites from "./Favorites";
 
 const Content = () => {
   return (
@@ -30,6 +31,9 @@ const Content = () => {
       </Route>
       <Route path="/players/:id">
         <SinglePlayer />
+      </Route>
+      <Route path="/favorites">
+        <Favorites />
       </Route>
       <Route path="/login">
         <Login />

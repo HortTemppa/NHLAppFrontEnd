@@ -17,16 +17,14 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <div className="HomeButtonWrapper">
-        <button onClick={handleStandingsClick}>Standings</button>
-      </div>
-      <div className="HomeButtonWrapper">
-        <button onClick={handleTeamsClick}>Teams</button>
-      </div>
-      <div className="HomeButtonWrapper">
-        <button onClick={handlePlayersClick}>Players</button>
-      </div>
+    <div className="HomeWrapper">
+      <span>Welcome to HockeyStats!</span>
+      <span>
+        HockeyStats is a web app dedicated to NHL statistics. This app provides
+        you with in-depth data about hockey players, teams and leagues! By
+        logging in with a Google account you can save your favorite players and
+        teams and make comparisons between them.
+      </span>
     </div>
   );
 };

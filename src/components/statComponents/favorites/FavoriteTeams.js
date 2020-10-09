@@ -1,5 +1,7 @@
 import React from "react";
 
-const FavoriteTeams = ({}) => {};
+const FavoriteTeams = ({}) => {
+  return null;
+};
 
 export default FavoriteTeams;

@@ -1,26 +1,16 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useNHLService } from "./NHLContext";
+import FavoritePlayers from "./statComponents/favorites/FavoritePlayers";
+import FavoriteTeams from "./statComponents/favorites/FavoriteTeams";
 
 const Favorites = () => {
-  const NHLService = useNHLService();
-  const history = useHistory();
-
-  const loggedIn = NHLService.checkLogin();
-
-  useEffect(() => {
-    if (!loggedIn) {
-      history.push("/");
-    } else {
-      NHLService.getFavoritePlayers()
-        .then((result) => {
-          console.log(result.data);
-        })
-        .catch((error) => console.error());
-    }
-  });
-
-  return <span>SO MANY FAVORITES</span>;
+  return (
+    <>
+      <FavoritePlayers />
+      <FavoriteTeams />
+    </>
+  );
 };
 
 export default Favorites;

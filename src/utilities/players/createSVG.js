@@ -35,14 +35,14 @@ export function createSVG(height, data, tickLabels, svgRef, setSelectedPlayer) {
   svg
     .select(".y-axis")
     .style("font", "inherit")
-    .style("font-size", "12px")
+    .style("font-size", "8px")
     .call(yAxis);
 
   svg
     .selectAll(".bar")
     .data(data)
     .join("rect")
-    .attr("title", (value, index) => `${tickLabels[index]}: ${value} points`)
+    .attr("title", (value, index) => `${tickLabels[index]}: ${value} `)
     .attr("id", (value, index) => index)
     .attr("class", "bar")
     .attr("y", (value, index) => yScale(index + 1))

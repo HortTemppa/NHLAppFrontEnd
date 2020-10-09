@@ -105,13 +105,13 @@ class NHLService {
     return this.userId;
   }
 
-  registerUser(uid) {
+  registerUser() {
     const collection = db.collection("users");
 
     collection
       .doc(`${this.userId}`)
       .set({ favoriteTeams: null, favoritePlayers: null });
-    document.cookie = `id=${this.userId}; max-age=10`;
+    document.cookie = `id=${this.userId}; max-age=3600`;
 
     this.loggedIn = true;
     this.loggedInChangeListener(true);
@@ -172,6 +172,30 @@ class NHLService {
       .favoritePlayers.includes(playerId);
 
     return playerIncludedInFavorites;
+  }
+
+  async getFavoritePlayers() {
+    const collection = await db.collection("users");
+
+    const userData = await collection.doc(this.userId).get();
+
+    const favorites = await userData.data();
+
+    let favoritePlayers = Promise.all(
+      favorites.favoritePlayers.map(async (id) => {
+        try {
+          let player = await this.getPlayer(id);
+
+          console.log("player,", player);
+
+          return player.data[0];
+        } catch (error) {
+          console.error(error);
+        }
+      })
+    );
+
+    return favoritePlayers;
   }
 
   async checkIfTeamIsFavorited(teamId) {

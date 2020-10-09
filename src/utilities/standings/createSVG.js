@@ -39,7 +39,7 @@ export function createSVG(
   svg
     .select(".y-axis")
     .style("font", "inherit")
-    .style("font-size", "12px")
+    .style("font-size", "8px")
     .call(yAxis);
 
   svg

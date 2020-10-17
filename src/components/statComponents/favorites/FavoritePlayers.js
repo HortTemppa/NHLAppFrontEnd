@@ -1,13 +1,30 @@
-import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import NHLService from "../../../services/NHLService";
-import Loading from "../../Loading";
+
+import { useSpring, animated } from "react-spring";
+
+
 import { useNHLService } from "../../NHLContext";
+
+import PlayerStats from "./PlayerStats";
+import SelectFavorite from "./SelectFavorite";
+import Loading from "../../Loading";
+
 
 const FavoritePlayers = ({}) => {
   const NHLService = useNHLService();
 
   const [favoritePlayers, setFavoritePlayers] = useState();
+
+  const [playerOneIndex, setPlayerOneIndex] = useState();
+  const [playerTwoIndex, setPlayerTwoIndex] = useState();
+
+  const handlePlayerOneChange = (event) => {
+    setPlayerOneIndex(event.target.value);
+  };
+
+  const handlePlayerTwoChange = (event) => {
+    setPlayerTwoIndex(event.target.value);
+  };
 
   useEffect(() => {
     async function getFavorites() {
@@ -15,23 +32,34 @@ const FavoritePlayers = ({}) => {
       setFavoritePlayers(players);
     }
 
-    getFavorites();
+     getFavorites();
   }, [NHLService]);
 
-  console.log(favoritePlayers);
+  const props = useSpring({
+    position: "relative",
+    top: "0px",
+    opacity: "1",
+    from: { top: "-25px", opacity: "0"},
+    config: {duration: 300}
+  });  
+
 
   return favoritePlayers ? (
-    <>
-      <h1>Favorite Players</h1>
-      <div className="TeamWrapper">
-        {favoritePlayers.map((player) => {
-          return player ? (
-            <div key={player.id} className="SingleTeam">
-              <span>{player.name}</span>
-            </div>
-          ) : null;
-        })}
+   <> <animated.div style={props} className = "PlayerWrapper" >
+      <h3 style={{ textAlign: "center"}}>
+        Compare Players
+      </h3>
+      <div className="ComparePlayer">
+        <div>
+          <SelectFavorite favorites = {favoritePlayers} handleChange = {handlePlayerOneChange}/>
+            <PlayerStats data = {favoritePlayers[playerOneIndex]}/>
+        </div>
+        <div>
+          <SelectFavorite favorites = {favoritePlayers} handleChange ={handlePlayerTwoChange}/>
+           <PlayerStats data = {favoritePlayers[playerTwoIndex]}/>
+        </div>
       </div>
+    </animated.div>
     </>
   ) : (
     <Loading />

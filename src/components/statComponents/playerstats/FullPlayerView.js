@@ -11,11 +11,12 @@ import NoGames from "./NoGames";
 import Loading from "../../Loading";
 
 const FullPlayerView = ({ data }) => {
+
   const props = useSpring({
     position: "relative",
-    top: "0px",
+    top: "0",
     opacity: "1",
-    from: { top: "-25px", opacity: "0" },
+    from: { top: "-25", opacity: "0" },
   });
 
   return data ? (

@@ -19,6 +19,7 @@ const FavoriteTeam = ({ selectedTeam }) => {
     }
   }, [selectedTeam, NHLService, loggedIn]);
 
+
   const handleFavoriteClick = () => {
     if (teamFavorited) {
       NHLService.removeFavoriteTeam(selectedTeam);

@@ -87,12 +87,10 @@ class NHLService {
   async checkIfUserExists(uid) {
     const collection = await db.collection("users");
 
-    console.log(collection);
     return await collection
       .doc(uid)
       .get()
       .then((doc) => {
-        console.log("doc", doc);
         if (doc.exists) {
           return true;
         } else {
@@ -110,7 +108,7 @@ class NHLService {
 
     collection
       .doc(`${this.userId}`)
-      .set({ favoriteTeams: null, favoritePlayers: null });
+      .set({ favoriteTeams: [], favoritePlayers: [] });
     document.cookie = `id=${this.userId}; max-age=3600`;
 
     this.loggedIn = true;
@@ -141,7 +139,6 @@ class NHLService {
         }
       })
       .catch((error) => {
-        console.log(error.message);
         this.loggedInChangeListener(false);
       });
   }
@@ -186,7 +183,6 @@ class NHLService {
         try {
           let player = await this.getPlayer(id);
 
-          console.log("player,", player);
 
           return player.data[0];
         } catch (error) {
@@ -196,6 +192,28 @@ class NHLService {
     );
 
     return favoritePlayers;
+  }
+
+  async getFavoriteTeams() {
+    const collection = await db.collection("users");
+
+    const userData = await collection.doc(this.userId).get();
+
+    const favorites = await userData.data();
+
+    let favoriteTeams = Promise.all(
+      favorites.favoriteTeams.map(async (id) => {
+        try {
+          let team = await this.getTeam(id);
+
+          return team.data;
+        } catch (error) {
+          console.error(error);
+        }
+      })
+    );
+
+    return favoriteTeams;
   }
 
   async checkIfTeamIsFavorited(teamId) {

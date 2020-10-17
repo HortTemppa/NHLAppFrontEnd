@@ -1,5 +1,4 @@
 export async function setChartHeight(chartType) {
-  console.log(chartType);
   if (chartType === 4 || chartType === 5) {
     const height = await 500;
 

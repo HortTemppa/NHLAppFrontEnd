@@ -23,7 +23,7 @@ const Roster = ({ teamId }) => {
 
   return roster ? (
     <>
-      <h2 style={{ textAlign: "center" }}>Roster</h2>
+      <h2 style={{ textAlign: "center", marginTop: "15px" }}>Roster</h2>
       <h3>Forwards</h3>
       <div className="RosterWrapper">
         {roster.map((player, i) => {
@@ -68,7 +68,7 @@ const Roster = ({ teamId }) => {
       </div>
     </>
   ) : (
-    <Loading />
+   <Loading/>
   );
 };
 

@@ -31,6 +31,8 @@ export function setChartData(rawData, sortBy) {
         })
       );
       break;
+
+    default:
   }
 
   return data[0];

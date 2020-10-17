@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useNHLService } from "../../NHLContext";
-import StarIcon from "@material-ui/icons/Star";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
+import React from "react";
 import { useHistory } from "react-router-dom";
+
 import PlayerFavoriteButton from "./PlayerFavoriteButton";
 
 const PlayerView = ({ data, handleStatClick, state }) => {

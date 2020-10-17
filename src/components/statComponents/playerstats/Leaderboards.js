@@ -6,7 +6,7 @@ import SortBy from "../navigation/SortBy";
 import Season from "../navigation/Season";
 import PointLeaders from "./PointLeaders";
 
-const Leaderboards = ({}) => {
+const Leaderboards = () => {
   const NHLService = useNHLService();
 
   const [data, setData] = useState();

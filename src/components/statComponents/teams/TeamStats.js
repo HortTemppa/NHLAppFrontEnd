@@ -3,8 +3,6 @@ import { sortRawDataAscending } from "../../../utilities/standings/dataSorts";
 import { createTeamPieChart } from "../../../utilities/standings/createTeamPieChart";
 import { useNHLService } from "../../NHLContext";
 
-import { useSpring, animated } from "react-spring";
-
 import Loading from "../../Loading";
 
 const TeamStats = ({ selectedTeam, rawData, chartType }) => {
@@ -21,7 +19,6 @@ const TeamStats = ({ selectedTeam, rawData, chartType }) => {
     NHLService.getTeam(selectedTeam).then(async (result) => {
       let data = await sortRawDataAscending(rawData, chartType);
 
-      console.log(data);
 
       data = await data.filter(
         (team) => team.team.id === parseInt(selectedTeam)
@@ -32,7 +29,6 @@ const TeamStats = ({ selectedTeam, rawData, chartType }) => {
     });
   }, [NHLService, selectedTeam, rawData, chartType]);
 
-  console.log(rawData);
 
   return teamData ? (
     <>
@@ -56,7 +52,7 @@ const TeamStats = ({ selectedTeam, rawData, chartType }) => {
       </div>
     </>
   ) : (
-    <Loading />
+    <null />
   );
 };
 

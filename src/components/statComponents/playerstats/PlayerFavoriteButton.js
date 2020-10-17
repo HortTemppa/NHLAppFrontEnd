@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useNHLService } from "../../NHLContext";
 
 import StarIcon from "@material-ui/icons/Star";
@@ -20,7 +19,7 @@ const PlayerFavoriteButton = ({ playerId }) => {
     NHLService.checkIfPlayerIsFavorited(parseInt(playerId)).then((result) =>
       setPlayerFavorited(result)
     );
-  }, []);
+  }, [NHLService, loggedIn, playerId]);
 
   const handleFavoriteClick = () => {
     if (playerFavorited) {

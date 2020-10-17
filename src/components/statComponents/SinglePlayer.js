@@ -6,7 +6,7 @@ import { useNHLService } from "../NHLContext";
 import Loading from "../Loading";
 import FullPlayerView from "./playerstats/FullPlayerView";
 
-const SinglePlayer = ({}) => {
+const SinglePlayer = () => {
   const params = useParams();
 
   const [playerData, setPlayerData] = useState();
@@ -20,8 +20,6 @@ const SinglePlayer = ({}) => {
       })
       .catch((error) => console.log(error));
   }, [params.id, NHLService]);
-
-  console.log(playerData);
 
   return playerData ? <FullPlayerView data={playerData} /> : <Loading />;
 };

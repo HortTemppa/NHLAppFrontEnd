@@ -27,11 +27,12 @@ const SingleTeam = () => {
     NHLService.getStandings().then((result) => {
       setRawData(result.data);
     });
-  }, []);
+  }, [NHLService]);
+
 
   return rawData ? (
     <animated.div style={props} className="TeamViewFull">
-      <FavoriteTeam selectedTeam={params.id} />
+      <FavoriteTeam selectedTeam={parseInt(params.id)} />
       <TeamStats rawData={rawData} chartType={6} selectedTeam={params.id} />
       <Roster teamId={params.id} />
     </animated.div>

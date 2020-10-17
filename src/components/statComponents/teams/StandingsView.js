@@ -16,7 +16,7 @@ const StandingsView = ({ selectedTeam, rawData, chartType }) => {
 
   return (
     <animated.div style={props} className="TeamView">
-      <FavoriteTeam />
+      <FavoriteTeam selectedTeam={selectedTeam} />
 
       <TeamStats
         chartType={chartType}

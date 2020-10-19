@@ -52,7 +52,7 @@ const TeamStats = ({ selectedTeam, rawData, chartType }) => {
       </div>
     </>
   ) : (
-    <null />
+    <Loading />
   );
 };
 

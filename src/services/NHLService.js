@@ -20,7 +20,8 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 
-const baseUrl = "http://192.168.8.101:3001/api/nhl";
+//const baseUrl = "http://192.168.8.101:3001/api/nhl";
+const baseUrl = "/api/nhl";
 
 const cache = setupCache({
   maxAge: 10 * 1000,

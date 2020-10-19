@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Goalie = ({ data }) => {
-  const [playerStatState, setPlayerStatState] = useState("assists");
+  const [playerStatState, setPlayerStatState] = useState("points");
 
   const handleStatClick = (state) => {
     return setPlayerStatState(state);

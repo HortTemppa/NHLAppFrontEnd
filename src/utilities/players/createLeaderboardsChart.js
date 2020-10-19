@@ -13,8 +13,6 @@ export async function createLeaderboardsChart(
   let data = await setChartData(rawData, sortBy);
   let tickLabels = await setTickLabels(rawData);
 
-  console.log("data", data);
-  console.log("tick labels:", tickLabels);
 
   createSVG(height, data, tickLabels, svgRef, setSelectedPlayer);
 }

@@ -7,7 +7,7 @@ import Loading from "../../Loading";
 import { useNHLService } from "../../NHLContext";
 
 
-const FavoriteTeams = ({}) => {
+const FavoriteTeams = () => {
 
 const NHLService = useNHLService();
 
@@ -40,7 +40,7 @@ const NHLService = useNHLService();
 <div className = "FavoriteTeamWrapper">
  {favoriteTeams.map((team) => {
    if(!team ){
-     return
+     return null
    }
      return <div
      key={team.id}

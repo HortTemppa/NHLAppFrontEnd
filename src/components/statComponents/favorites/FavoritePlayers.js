@@ -10,7 +10,7 @@ import SelectFavorite from "./SelectFavorite";
 import Loading from "../../Loading";
 
 
-const FavoritePlayers = ({}) => {
+const FavoritePlayers = () => {
   const NHLService = useNHLService();
 
   const [favoritePlayers, setFavoritePlayers] = useState();
@@ -40,7 +40,6 @@ const FavoritePlayers = ({}) => {
     top: "0px",
     opacity: "1",
     from: { top: "-25px", opacity: "0"},
-    config: {duration: 300}
   });  
 
 

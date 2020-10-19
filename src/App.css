@@ -278,6 +278,7 @@ svg {
 .SingleTeam {
   height: 40px;
   text-align: center;
+  font-size: 12px;
   padding: 10px;
   margin: 5px;
   background: #fafafa;

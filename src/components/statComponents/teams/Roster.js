@@ -19,7 +19,6 @@ const Roster = ({ teamId }) => {
       .catch((error) => console.log(error));
   }, [teamId, NHLService]);
 
-  console.log(roster);
 
   return roster ? (
     <>
